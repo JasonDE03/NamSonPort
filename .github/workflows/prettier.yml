@@ -1,26 +1,30 @@
 name: Check Format
+
 on:
   push:
+    branches:
+      - main
   pull_request:
-      branches:
-        - master
+    branches:
+      - main
+
 jobs:
   check-format:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
         with:
           persist-credentials: false
 
-      - uses: actions/setup-node@v2-beta
+      - uses: actions/setup-node@v2
         with:
-          node-version: '12'
+          node-version: '14'  # Use the latest version of Node.js
 
       - name: Install Prettier
-        run: npm install -g prettier
+        run: npm install -g prettier@latest  # Use the latest version of Prettier
 
       - name: Check Format
         run: |
           prettier -c "./**/*.{js,css,json}"
-
