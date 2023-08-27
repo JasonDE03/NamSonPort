@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: 14
 
+      - name: Clean npm cache
+        run: npm cache clean --force
+
       - name: Install dependencies
         run: npm install
 
@@ -26,7 +29,7 @@ jobs:
 
       - name: Deploy to GitHub Pages
         run: |
-          git config --global user.email "jasonng.1407@gmail.com"
-          git config --global user.name "JasonDE03"
+          git config --global user.email "jasonng.1407@gmail.com"  # Replace with your email
+          git config --global user.name "JasonDe03"     # Replace with your username
           npm install -g gh-pages
           gh-pages -d build -b gh-pages -t true
